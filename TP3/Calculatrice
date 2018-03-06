@@ -1,0 +1,16 @@
+#!/bin/bash
+if [[ "$1" =~ ^[0-9]+$  && "$2" == "" ]] 2>/dev/null; then
+	echo "Quelle valeur ?"
+	while read -r L1 && ! [[ "$L1" =~ ^[0-9]+$ ]]; do
+		echo -e "\033[38;5;196mError :\033[0m Not Int"
+	done 
+	echo "Quelle operation voulez-vous faire ?"
+	while read -r L2 && ! [[ "$L2" =~ [-+/]+$ ]]; do
+		echo -e "\033[38;5;196mError :\033[0m Not Math operator"
+	done
+	echo "Le resultat de $1$L2$L1 est "$[$1$L2$L1]
+else
+	echo -e "\033[38;5;196mError :\033[0m Not Int"
+fi
+
+# 43 45 47
