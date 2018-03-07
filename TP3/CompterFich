@@ -1,0 +1,19 @@
+#!/bin/bash
+c=0
+if [[ -d "$1" ]]; then
+	echo -e "\e[7m 📂  $(basename $1) \e[0m"
+	#ls -l "$1";
+	for i in $1/*; do
+		if [[ -d "$i" ]]; then
+			echo -e "\e[43m 📁 \e[0m $(basename $i)"
+		elif [[ -f "$i" ]]; then
+			echo -e "\e[104m 🗎 \e[0m $(basename $i)"
+		else
+			echo -e "\e[7m ? \e[0m $(basename $i)"
+		fi
+		c=$((c+1))
+	done
+	echo -e "\e[7m 🗇 \e[0m $c elements found."
+else 
+	echo -e "\033[38;5;196mError :\033[0m Not Folder $arg"
+fi
